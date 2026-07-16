@@ -1,23 +1,23 @@
 #!/bin/bash
-read -p "Enter file name(without .desktop): " file_name
+read -p "Enter file name (without .desktop): " file_name
 while [[ -z "$file_name" ]] 
 do 
-    read -p "The file name cannot be empty. Please try again: " file_name
+    read -p "File name cannot be empty. Please try again: " file_name
 done
 read -p "Enter application name: " name
 while [[ -z "$name" ]] 
 do
-    read -p "The name of application cannot be empty. Please try again: " name
+    read -p "Application name cannot be empty. Please try again: " name
 done
 read -p "Enter path to executable file: " exec
 while [[ -z "$exec" ]]
 do
-    read -p "The path to executable file cannot be empty. Please try again: " exec
+    read -p "Executable path cannot be empty. Please try again: " exec
 done
 read -p "Enter path to icon file: " icon
 while [[ -z "$icon" ]]
 do
-    read -p "The path to icon cannot be empty. Please try again: " icon
+    read -p "Icon path cannot be empty. Please try again: " icon
 done
 desktop_file="${file_name%.*}.desktop"
 echo "[Desktop Entry]" > "$desktop_file"
