@@ -16,12 +16,24 @@ while [[ -z "$icon" ]]; do
     read -p "Icon path cannot be empty. Please try again: " icon
 done
 while true; do
-    read -p "Show application in menu? (yes/no Enter = yes): " show_in_menu
+    read -p "Show application in menu? (yes/no, Enter = yes): " show_in_menu
     if [[ -z "$show_in_menu" || "$show_in_menu" == "yes" ]]; then 
         show_in_menu="false"
         break
     elif [[ "$show_in_menu" == "no" ]]; then   
         show_in_menu="true"
+        break
+    else
+        echo "Error. Try again"
+    fi
+    done
+while true; do
+    read -p "Run in terminal? (yes/no, Enter = no): " terminal
+    if [[ -z "$terminal" || "$terminal" == "no" ]]; then 
+        terminal="false"
+        break
+    elif [[ "$terminal" == "yes" ]]; then   
+        terminal="true"
         break
     else
         echo "Error. Try again"
@@ -35,7 +47,7 @@ echo "Name=\"$name\"" >> "$desktop_file"
 echo "NoDisplay=$show_in_menu" >> "$desktop_file"
 echo "Icon=\"$icon\"" >> "$desktop_file"
 echo "Exec=\"$exec\"" >> "$desktop_file"
-echo "Terminal=false" >> "$desktop_file"
+echo "Terminal=$terminal" >> "$desktop_file"
 echo "Categories=Development;" >> "$desktop_file"
 chmod +x "$desktop_file"
 sudo mv "$desktop_file" /usr/share/applications
