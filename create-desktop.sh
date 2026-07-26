@@ -39,6 +39,10 @@ while true; do
         echo "Error. Try again"
     fi
     done
+read -p "Enter category (Enter = Development): " category
+if [[ -z "$category" ]]; then
+    category="Development"
+    fi
 desktop_file="${file_name%.*}.desktop"
 echo "[Desktop Entry]" > "$desktop_file"
 echo "Version=1.1" >> "$desktop_file"
@@ -48,7 +52,7 @@ echo "NoDisplay=$show_in_menu" >> "$desktop_file"
 echo "Icon=\"$icon\"" >> "$desktop_file"
 echo "Exec=\"$exec\"" >> "$desktop_file"
 echo "Terminal=$terminal" >> "$desktop_file"
-echo "Categories=Development;" >> "$desktop_file"
+echo "Categories=$category;" >> "$desktop_file"
 chmod +x "$desktop_file"
 sudo mv "$desktop_file" /usr/share/applications
 echo "Done! Desktop file created successfully"
